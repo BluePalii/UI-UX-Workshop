@@ -1,0 +1,44 @@
+<!-- Page 10: Bad UI, Good UX - Schedule a Meeting -->
+<html>
+<head>
+  <title>Page 10 - Schedule Meeting</title>
+</head>
+<body style="background:#fff; font-family:monospace;">
+  <center>
+    <h3>schedule meeting</h3>
+    <form onsubmit="return confirmBooking(event)">
+      date:<br>
+      <input id="date" type="date"><br><br>
+      time:<br>
+      <select id="time">
+        <option value="">--select--</option>
+        <option>9AM</option>
+        <option>11AM</option>
+        <option>2PM</option>
+        <option>4PM</option>
+      </select><br><br>
+      <input type="submit" value="submit">
+    </form>
+    <p id="msg" style="color:green;"></p>
+  </center>
+
+  <script>
+    function confirmBooking(e) {
+      e.preventDefault();
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const msg = document.getElementById("msg");
+
+      if (!date || !time) {
+        msg.textContent = "⚠️ Please choose both date and time.";
+        msg.style.color = "red";
+        return false;
+      }
+
+      msg.style.color = "green";
+      msg.textContent = `✅ Meeting scheduled for ${date} at ${time}`;
+      return false;
+    }
+  </script>
+</body>
+</html>

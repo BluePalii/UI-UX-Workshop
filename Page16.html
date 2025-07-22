@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page 16 - AI Summarizer (Bad UI & Bad UX)</title>
+  <style>
+    body {
+      background: linear-gradient(45deg, magenta, yellow);
+      font-family: cursive;
+      color: #ff0000;
+      padding: 1em;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      background-color: lime;
+      padding: 10px;
+      border: 5px double purple;
+    }
+    textarea {
+      width: 90%;
+      height: 100px;
+      background-color: #ffccff;
+      color: darkblue;
+      font-size: 0.9em;
+      border: 3px dotted #00f;
+      margin: 1em auto;
+      display: block;
+      resize: none;
+    }
+    button {
+      font-size: 1.5em;
+      background-color: orange;
+      border: 3px groove black;
+      padding: 0.5em 1em;
+      cursor: pointer;
+      animation: shake 0.4s infinite alternate;
+    }
+    @keyframes shake {
+      0% { transform: rotate(-2deg); }
+      100% { transform: rotate(2deg); }
+    }
+    #output {
+      margin-top: 2em;
+      background-color: #fff;
+      padding: 1em;
+      border: 2px dashed red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>SUMMARIZER 3000!!!</h1>
+  <textarea placeholder="YO! Just jam some words here dude!"></textarea>
+  <br>
+  <button onclick="brokenSummarizer()">MAKE IT SHORT 🔥</button>
+  <div id="output">This is where stuff would go... probably.</div>
+
+  <script>
+    function brokenSummarizer() {
+      alert("Wooo! Something happened!");
+      // UX fail: nothing really happens
+      document.getElementById("output").style.display = 'block';
+    }
+  </script>
+</body>
+</html>

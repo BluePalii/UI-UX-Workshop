@@ -1,0 +1,74 @@
+<!-- Page 5: Good UI, Bad UX - Silly Game Variant -->
+<html>
+<head>
+  <title>Page 5</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .game-box {
+      background: white;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 320px;
+    }
+    .game-box h2 {
+      margin-bottom: 1em;
+    }
+    .input-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+    input[type="text"] {
+      padding: 0.7em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.7em;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .error-message {
+      margin-top: 1em;
+      color: red;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-box">
+    <h2>🎯 Pick a Lucky Word</h2>
+    <p>Enter a word. If it matches our super secret lucky word, you win!</p>
+    <div class="input-area">
+      <input type="text" id="wordInput" placeholder="Type something fun...">
+      <button onclick="playGame()">Try It!</button>
+    </div>
+    <div class="error-message" id="gameMessage">❌ Nope! Try again with more sparkles.</div>
+  </div>
+
+  <script>
+    function playGame() {
+      const input = document.getElementById('wordInput');
+      const message = document.getElementById('gameMessage');
+      input.value = '';
+      message.style.display = 'block';
+      setTimeout(() => message.style.display = 'none', 2500);
+    }
+  </script>
+</body>
+</html>

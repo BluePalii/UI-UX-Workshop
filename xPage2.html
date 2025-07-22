@@ -1,0 +1,75 @@
+<!-- Page 2: Bad UI, Good UX -->
+<html>
+<head>
+  <title>Page 2</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #bbbbbb;
+      color: #000;
+      margin: 0;
+      padding: 2em;
+    }
+    h1 {
+      font-size: 32px;
+      color: darkblue;
+    }
+    .menu {
+      background: lime;
+      padding: 10px;
+      border: 3px dotted purple;
+    }
+    .menu a {
+      color: red;
+      font-weight: bold;
+      margin-right: 20px;
+      text-decoration: underline;
+    }
+    .content {
+      background: white;
+      padding: 2em;
+      border: 2px dashed teal;
+      margin-top: 1em;
+    }
+    button {
+      padding: 0.7em;
+      background: yellow;
+      font-size: 18px;
+      font-weight: bold;
+      border: 4px ridge pink;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <a href="#">Home</a>
+    <a href="#">Help</a>
+    <a href="#">Settings</a>
+  </div>
+
+  <div class="content">
+    <h1>Post a Message</h1>
+    <p>Everything works like a charm — fast, predictable, and usable.</p>
+    <form onsubmit="return postMessage(event)">
+      <label>Type your message:</label><br>
+      <input type="text" id="message" required style="width: 100%; padding: 10px;"><br><br>
+      <button type="submit">Post!</button>
+    </form>
+    <ul id="log"></ul>
+  </div>
+
+  <script>
+    function postMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('message');
+      const val = input.value;
+      const log = document.getElementById('log');
+      const li = document.createElement('li');
+      li.textContent = `✅ You posted: "${val}"`;
+      log.appendChild(li);
+      input.value = '';
+    }
+  </script>
+</body>
+</html>

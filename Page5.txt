@@ -1,0 +1,66 @@
+<!-- Page 5: Good UI, Bad UX - Form Task Variant -->
+<html>
+<head>
+  <title>Page 5</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef3f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-box {
+      background: white;
+      padding: 2em;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      width: 320px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7em;
+      margin: 1em 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #1e90ff;
+      color: white;
+      padding: 0.7em 1.5em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .error {
+      color: crimson;
+      font-size: 0.9em;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Subscribe to Our Newsletter</h2>
+    <form onsubmit="return handleSubmit(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <div class="error" id="error">Oops! Something went wrong. Try again later.</div>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('name').value = '';
+      const err = document.getElementById('error');
+      err.style.display = 'block';
+      setTimeout(() => err.style.display = 'none', 3000);
+      return false;
+    }
+  </script>
+</body>
+</html>

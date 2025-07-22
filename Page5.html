@@ -1,0 +1,142 @@
+<!-- Page 5: Good UI, Bad UX - Dot Connect Game (All-to-All without overlap) -->
+<html>
+<head>
+  <title>Page 5</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      color: #333;
+    }
+    canvas {
+      border: 2px solid #ccc;
+      background: #fff;
+      margin: 1em 0;
+    }
+    input, select, button {
+      padding: 0.6em;
+      font-size: 1em;
+      margin: 0.5em;
+      border-radius: 6px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 1em;
+      font-weight: bold;
+      color: crimson;
+      display: none;
+    }
+    .challenge {
+      margin-top: 2em;
+      font-size: 1.2em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Connect the Dots!</h1>
+  <p>What's the minimum number of straight lines to directly connect <strong>every</strong> dot to <strong>every</strong> other dot?</p>
+  <label for="dotCount">Choose number of dots:</label>
+  <select id="dotCount" onchange="generateDots()">
+    <option value="2">2 Dots</option>
+    <option value="3">3 Dots</option>
+    <option value="4">4 Dots</option>
+    <option value="5">5 Dots</option>
+    <option value="6">6 Dots</option>
+  </select>
+
+  <canvas id="dotCanvas" width="300" height="300"></canvas>
+
+  <div>
+    <input type="number" id="lineGuess" placeholder="Your guess...">
+    <button onclick="submitAnswer()">Submit</button>
+  </div>
+  <div class="feedback" id="feedback">Wrong answer! Try again.</div>
+
+  <div class="challenge">
+    🔥 Bonus Challenge: How many lines would you need to connect <strong>300 dots</strong> this way?
+  </div>
+
+  <script>
+    const canvas = document.getElementById('dotCanvas');
+    const ctx = canvas.getContext('2d');
+    let dots = [];
+    let correctLines = 1;
+
+    function comb(n) {
+      return (n * (n - 1)) / 2;
+    }
+
+    function generateDots() {
+      const count = parseInt(document.getElementById('dotCount').value);
+      dots = [];
+      correctLines = comb(count);
+      const radius = 100;
+      const centerX = 150;
+      const centerY = 150;
+      for (let i = 0; i < count; i++) {
+        const angle = (2 * Math.PI / count) * i;
+        dots.push({
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle)
+        });
+      }
+      drawDots();
+    }
+
+    function drawDots() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'black';
+      dots.forEach(dot => {
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 6, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+    }
+
+    function drawLinesBetweenAllDots() {
+      ctx.strokeStyle = '#007BFF';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    function submitAnswer() {
+      const guess = parseInt(document.getElementById('lineGuess').value);
+      const feedback = document.getElementById('feedback');
+      if (guess === correctLines) {
+        feedback.textContent = `✅ Correct! ${correctLines} lines needed to connect all dots.`;
+        feedback.style.color = 'green';
+        feedback.style.display = 'block';
+        drawDots();
+        drawLinesBetweenAllDots();
+      } else {
+        feedback.textContent = '❌ Nope! Try again.';
+        feedback.style.color = 'crimson';
+        feedback.style.display = 'block';
+      }
+    }
+
+    generateDots();
+  </script>
+</body>
+</html>

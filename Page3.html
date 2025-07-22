@@ -1,0 +1,94 @@
+<!-- Page 3: Good UI, Good UX -->
+<html>
+<head>
+  <title>Page 3</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --accent: #3498db;
+      --bg: #f9f9f9;
+      --text: #333;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: var(--primary);
+    }
+    .todo-container {
+      background: white;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+    input[type="text"] {
+      width: calc(100% - 120px);
+      padding: 0.8em;
+      margin-right: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.8em 1.2em;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1em;
+    }
+    li {
+      padding: 0.6em;
+      border-bottom: 1px solid #eee;
+    }
+    @media (max-width: 600px) {
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 0.5em;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 Smart To-Do List</h1>
+  <div class="todo-container">
+    <form onsubmit="return addTodo(event)">
+      <input type="text" id="taskInput" placeholder="What do you need to do?" required>
+      <button type="submit">Add</button>
+    </form>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTodo(e) {
+      e.preventDefault();
+      const input = document.getElementById('taskInput');
+      const val = input.value.trim();
+      if (!val) return;
+      const ul = document.getElementById('taskList');
+      const li = document.createElement('li');
+      li.textContent = `📌 ${val}`;
+      ul.appendChild(li);
+      input.value = '';
+    }
+  </script>
+</body>
+</html>

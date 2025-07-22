@@ -1,0 +1,77 @@
+<!-- Page 12: Bad UI, Bad UX - Schedule a Meeting -->
+<html>
+<head>
+  <title>Page 12 - Schedule Meeting</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, cursive, sans-serif;
+      background-color: hotpink;
+      color: navy;
+      margin: 0;
+      padding: 2em;
+      animation: flash 1s infinite alternate;
+    }
+    @keyframes flash {
+      0% { background-color: hotpink; }
+      100% { background-color: violet; }
+    }
+    .box {
+      border: 5px dotted gold;
+      background: lime;
+      padding: 2em;
+      width: 85%;
+      margin: auto;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    input, select {
+      width: 70%;
+      margin: 1em;
+      padding: 0.5em;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      background-color: beige;
+    }
+    button {
+      background: red;
+      color: white;
+      font-size: 1.3em;
+      padding: 0.6em 1em;
+      border-radius: 8px;
+      border: 3px ridge black;
+      cursor: crosshair;
+    }
+    .result {
+      margin-top: 1.5em;
+      font-size: 1.4em;
+      color: darkred;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Schedual Ur Thingy</h1>
+    <label>When??</label><br>
+    <input type="text" id="day" placeholder="like, Friday?"><br>
+    <label>Hourrr?</label><br>
+    <select id="hour">
+      <option>uhhh 8 maybe</option>
+      <option>ten-ish</option>
+      <option>midafternoon?</option>
+    </select><br>
+    <button onclick="explode()">SMACK THIS</button>
+    <div class="result" id="res"></div>
+  </div>
+
+  <script>
+    function explode() {
+      const msg = document.getElementById("res");
+      msg.textContent = "💥 Whoops. That didn't do what it was supposed to. Try yelling at your computer.";
+    }
+  </script>
+</body>
+</html>

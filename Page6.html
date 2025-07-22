@@ -1,0 +1,129 @@
+<!-- Page 6: Bad UI, Good UX - Dot Connect Game (All-to-All without overlap) -->
+<html>
+<head>
+  <title>Page 6</title>
+  <style>
+    body {
+      background: #fffae6;
+      font-family: "Comic Sans MS", cursive;
+      color: darkred;
+      margin: 0;
+      text-align: center;
+      padding-top: 3em;
+    }
+    canvas {
+      border: 5px double orange;
+      background: lightyellow;
+      margin-top: 1em;
+    }
+    select, input, button {
+      padding: 0.4em;
+      font-size: 18px;
+      margin: 0.6em;
+      border: 3px dashed red;
+      background: pink;
+      color: blue;
+      font-weight: bold;
+    }
+    .result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 1em;
+    }
+    .bonus {
+      margin-top: 2em;
+      background: yellow;
+      padding: 1em;
+      display: inline-block;
+      border: 2px solid purple;
+    }
+  </style>
+</head>
+<body>
+  <h1>CONNECTEM DOTS!!!</h1>
+  <p>HOW MANY LINES NEEDED FOR EVERYONE 2 B FRIENDS??</p>
+
+  <label>How many dots you wanna play with:</label>
+  <select id="dotCount" onchange="generateDots()">
+    <option value="2">TWO</option>
+    <option value="3">THREE</option>
+    <option value="4">FOUR</option>
+    <option value="5">FIVE</option>
+    <option value="6">SIX</option>
+  </select>
+
+  <br>
+  <canvas id="dotCanvas" width="300" height="300"></canvas>
+  <br>
+
+  <input type="number" id="lineGuess">
+  <button onclick="submitAnswer()">DO IT!!!</button>
+
+  <div class="result" id="result"></div>
+
+  <div class="bonus">
+    BONUSSS: how many lines 4 300 dots huh? 🧠
+  </div>
+
+  <script>
+    const canvas = document.getElementById("dotCanvas");
+    const ctx = canvas.getContext("2d");
+    let dots = [];
+    let correctLines = 0;
+
+    function comb(n) {
+      return (n * (n - 1)) / 2;
+    }
+
+    function generateDots() {
+      const count = parseInt(document.getElementById("dotCount").value);
+      dots = [];
+      correctLines = comb(count);
+      const r = 110, cx = 150, cy = 150;
+      for (let i = 0; i < count; i++) {
+        const angle = (2 * Math.PI / count) * i;
+        dots.push({ x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) });
+      }
+      drawDots();
+    }
+
+    function drawDots() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "black";
+      dots.forEach(dot => {
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 5, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+    }
+
+    function drawLines() {
+      ctx.strokeStyle = "hotpink";
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    function submitAnswer() {
+      const val = parseInt(document.getElementById("lineGuess").value);
+      const result = document.getElementById("result");
+      if (val === correctLines) {
+        result.innerText = `🎉 YAYYY!!! You got it. ${correctLines} lines!`;
+        result.style.color = "green";
+        drawDots();
+        drawLines();
+      } else {
+        result.innerText = "WRONGGG try again 💩";
+        result.style.color = "red";
+      }
+    }
+
+    generateDots();
+  </script>
+</body>
+</html>

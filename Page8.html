@@ -1,0 +1,123 @@
+<!-- Page 8: Bad UI, Bad UX - Dot Connect Game Nightmare Edition -->
+<html>
+<head>
+  <title>Page 8</title>
+  <style>
+    body {
+      background: linear-gradient(45deg, red, blue, yellow);
+      font-family: "Papyrus", fantasy;
+      color: lime;
+      margin: 0;
+      padding: 3em;
+      animation: shake 1s infinite;
+    }
+    @keyframes shake {
+      0% { transform: rotate(0); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      75% { transform: rotate(1deg); }
+      100% { transform: rotate(0); }
+    }
+    h1 {
+      font-size: 48px;
+      text-shadow: 2px 2px red;
+      text-align: center;
+    }
+    canvas {
+      display: block;
+      border: 8px ridge magenta;
+      background: repeating-linear-gradient(45deg, cyan, pink 10px);
+      margin: 2em auto;
+    }
+    select, input, button {
+      padding: 1em;
+      font-size: 20px;
+      border: 4px dotted orange;
+      margin: 1em auto;
+      display: block;
+      background-color: purple;
+      color: white;
+    }
+    .bonus {
+      font-size: 24px;
+      color: yellow;
+      background: black;
+      padding: 1em;
+      text-align: center;
+      border: 6px double red;
+    }
+  </style>
+</head>
+<body>
+  <h1>CONNECT!!!</h1>
+  <canvas id="canvas" width="300" height="300"></canvas>
+
+  <select id="dots">
+    <option>Pickem Dots</option>
+    <option value="2">TWO</option>
+    <option value="3">THREE</option>
+    <option value="4">FOUR</option>
+    <option value="5">FIVE</option>
+    <option value="6">SIX</option>
+  </select>
+
+  <input id="lines" placeholder="Guess???">
+  <button onclick="chaos()">YES?</button>
+
+  <div class="bonus">🔥🔥 HOW MANY LINES FOR 300 DOTS HUH 🔥🔥</div>
+
+  <script>
+    const c = document.getElementById("canvas");
+    const x = c.getContext("2d");
+    let d = [];
+    let count = 2;
+
+    function comb(n) {
+      return n * (n - 1) / 2;
+    }
+
+    document.getElementById("dots").onchange = function() {
+      const v = parseInt(this.value);
+      if (!isNaN(v)) {
+        count = v;
+        drawDots();
+      }
+    }
+
+    function drawDots() {
+      d = [];
+      const cx = 150, cy = 150, r = 110;
+      for (let i = 0; i < count; i++) {
+        const a = (2 * Math.PI / count) * i;
+        d.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
+      }
+      x.clearRect(0, 0, 300, 300);
+      x.fillStyle = 'black';
+      d.forEach(pt => {
+        x.beginPath();
+        x.arc(pt.x, pt.y, 7, 0, 2 * Math.PI);
+        x.fill();
+      });
+    }
+
+    function chaos() {
+      let g = parseInt(document.getElementById("lines").value);
+      if (g === comb(count)) {
+        alert("LUCKY YOU 🍀 - " + g + " LINES IS RIGHT");
+        d.forEach((a, i) => {
+          for (let j = i + 1; j < d.length; j++) {
+            x.beginPath();
+            x.moveTo(a.x, a.y);
+            x.lineTo(d[j].x, d[j].y);
+            x.strokeStyle = ['red', 'lime', 'yellow', 'blue'][j % 4];
+            x.lineWidth = 3;
+            x.stroke();
+          }
+        });
+      } else {
+        alert("WRONGGGG! 😡");
+      }
+    }
+  </script>
+</body>
+</html>

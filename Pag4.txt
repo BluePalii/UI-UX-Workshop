@@ -1,0 +1,71 @@
+<!-- Page 4: Bad UI, Bad UX -->
+<html>
+<head>
+  <title>Page 4</title>
+  <style>
+    body {
+      background: repeating-linear-gradient(45deg, yellow, orange 10px, magenta 10px, cyan 20px);
+      font-family: "Papyrus", fantasy;
+      color: lime;
+      animation: spin 5s linear infinite;
+      text-align: center;
+      padding: 3em;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(1turn); }
+    }
+    h1 {
+      font-size: 50px;
+      text-shadow: 2px 2px red;
+    }
+    button {
+      padding: 20px;
+      font-size: 24px;
+      background-color: hotpink;
+      border: 5px double green;
+      border-radius: 30px;
+      cursor: not-allowed;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .popup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: red;
+      color: white;
+      padding: 2em;
+      font-size: 24px;
+      border: 4px dashed yellow;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.3s ease-in-out;
+    }
+    .show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Click the Button. Or Don’t. Whatever.</h1>
+  <button onclick="triggerChaos()">PRESS ME NOW!!</button>
+
+  <div class="popup" id="popup">💥 Something went wrong. Oops.</div>
+
+  <script>
+    function triggerChaos() {
+      const popup = document.getElementById('popup');
+      popup.classList.add('show');
+      setTimeout(() => {
+        popup.innerText = '🔥 Now everything is broken.';
+        popup.style.background = 'black';
+        popup.style.borderColor = 'magenta';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- Page 9: Good UI, Bad UX - Schedule a Meeting -->
+<html>
+<head>
+  <title>Page 9 - Schedule Meeting</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f9ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 320px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1em;
+      color: #333;
+    }
+    input, select, button {
+      width: 100%;
+      margin: 0.5em 0;
+      padding: 0.8em;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .feedback {
+      margin-top: 1em;
+      color: crimson;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Book a Meeting</h2>
+    <input type="date" id="date">
+    <select id="time">
+      <option value="">Select a time</option>
+      <option>9:00 AM</option>
+      <option>11:00 AM</option>
+      <option>2:00 PM</option>
+      <option>4:00 PM</option>
+    </select>
+    <button onclick="fakeSubmit()">Schedule</button>
+    <div class="feedback" id="feedback">❌ Oops! Something went wrong. Please try again later.</div>
+  </div>
+
+  <script>
+    function fakeSubmit() {
+      document.getElementById('feedback').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

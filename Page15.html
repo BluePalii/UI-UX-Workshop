@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page 15 - AI Summarizer (Bad UI & Good UX)</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: monospace;
+      color: #111;
+      padding: 2em;
+    }
+    .box {
+      border: 3px dashed #aaa;
+      padding: 1em;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 1.5em;
+      text-align: center;
+      color: darkgreen;
+    }
+    #entry {
+      width: 100%;
+      height: 140px;
+      background: #fefefe;
+      font-size: 1em;
+      border: 2px solid #999;
+      padding: 0.5em;
+    }
+    #doit {
+      font-size: 1.2em;
+      background: #444;
+      color: #fff;
+      padding: 0.4em 1em;
+      border: none;
+      margin-top: 1em;
+    }
+    #doit:hover {
+      background: #222;
+    }
+    #aiOutput {
+      margin-top: 1.5em;
+      background: #f4f4f4;
+      padding: 1em;
+      border-left: 6px solid darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Text Summarizing Bot</h1>
+    <textarea id="entry" placeholder="Type in stuff here..."></textarea>
+    <br>
+    <button id="doit" onclick="summarize()">Go</button>
+    <div id="aiOutput"></div>
+  </div>
+
+  <script>
+    function summarize() {
+      const input = document.getElementById("entry").value.trim();
+      const out = document.getElementById("aiOutput");
+
+      if (input.length === 0) {
+        out.innerHTML = "<em>Please type something for me to summarize.</em>";
+        return;
+      }
+
+      let summary;
+      if (input.length < 100) {
+        summary = "That was already pretty short. Nothing to do!";
+      } else {
+        const sentences = input.match(/[^.!?]+[.!?]/g);
+        summary = sentences && sentences.length > 1 
+          ? sentences.slice(0, 2).join(" ")
+          : input.slice(0, 120) + "...";
+      }
+
+      out.innerHTML = `<strong>Summary:</strong> ${summary}`;
+    }
+  </script>
+</body>
+</html>
