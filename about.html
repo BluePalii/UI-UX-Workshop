@@ -34,6 +34,20 @@
       border-left: 4px solid #fbc02d;
       margin: 1em 0;
     }
+    .contact {
+      text-align: center;
+      font-size: 1.1em;
+      margin-top: 2em;
+    }
+    .contact a {
+      color: #2c3e50;
+    }
+    .callout {
+      background-color: #fff3e0;
+      padding: 1em;
+      border-left: 4px solid #fb8c00;
+      margin-top: 2em;
+    }
   </style>
 </head>
 <body>
@@ -67,6 +81,29 @@
   </div>
 
   <div class="section">
+    <h2>📄 A Real Problem I'm Working On</h2>
+    <p>Right now, I’m working with nearly <strong>2 million 8-K filings</strong> — public documents submitted to the <strong>U.S. Securities and Exchange Commission (SEC)</strong> by companies to announce major events. These can include acquisitions, leadership changes, and stock offerings.</p>
+    <p><strong>What is an 8-K?</strong> It’s a report that provides shareholders and the public with timely information about a company. Think of it like a public diary of big events for companies that are traded on the stock market.</p>
+    <p>In particular, I'm trying to extract 3 important pieces of information from these documents:</p>
+    <ul>
+      <li>📆 <strong>The date</strong> the stock was sold (this is usually structured and appears at the top)</li>
+      <li>💵 <strong>The price per share</strong></li>
+      <li>📊 <strong>The number of shares sold</strong></li>
+    </ul>
+    <p>The challenge? The date is easy — but the language describing the sale is not structured and can appear in dozens of different ways. Here are just a few examples from real filings:</p>
+    <ul>
+      <li>“We issued 500,000 shares of common stock at $4.25 per share.”</li>
+      <li>“Each share was sold for a purchase price of $6.15.”</li>
+      <li>“Gross proceeds of $3.2 million from the sale of 400,000 shares.”</li>
+    </ul>
+    <p>How can we train a machine to understand and extract that information? Could you design a system that understands this flexible language? What kind of <strong>AI tools</strong> might help — like language models, pattern matching, or machine learning classifiers?</p>
+    <div class="callout">
+      💡 <strong>Bonus Challenge:</strong><br>
+      If you were building an AI to do this task, what data would you train it on? How would you test its accuracy? What would you do if the AI missed something important?
+    </div>
+  </div>
+
+  <div class="section">
     <h2>💬 Questions for You</h2>
     <div class="question">
       ❓ Do you use AI tools? (Like ChatGPT, DALL·E, or Google Lens?) What do you use them for?
@@ -82,6 +119,11 @@
   <div class="section">
     <h2>🎯 Why This Matters</h2>
     <p>AI is a powerful tool, but it’s not magic. Understanding when and how to use it — especially in areas like software and security — helps us build better, safer, and smarter systems. And learning this early means you can help shape the future, not just watch it happen.</p>
+  </div>
+
+  <div class="contact">
+    📧 Email: <a href="mailto:mohammad.ahmad@mail.wvu.edu">mohammad.ahmad@mail.wvu.edu</a><br>
+    🔗 Faculty Profile: <a href="https://business.wvu.edu/faculty-and-staff/directory/profile?pid=3551" target="_blank">MJ Ahmad @ WVU</a>
   </div>
 </body>
 </html>
